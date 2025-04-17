@@ -13,26 +13,50 @@ function computerChoice() {
         return "scissors"
     }
 }
-let playerChoice = (prompt("Rock, Paper or Scissors?"));
 
-if (playerChoice.toLowerCase() != "rock" && playerChoice.toLowerCase() != "paper" && playerChoice.toLowerCase() != "scissors") {
-    console.log("please choose rock paper or scissors")
-} 
 
-function playRound(playerChoice, computerChoice) {
-    console.log(`the computer chose ${computerChoice}`)
-    console.log(`You picked ${playerChoice.toLowerCase()}`)
-    if (playerChoice.toLowerCase() === computerChoice) {
-        console.log("draw")
-    } else if ((playerChoice.toLowerCase() === "rock" && computerChoice === "paper") || (playerChoice.toLowerCase() === "paper" && computerChoice === "scissors") || (playerChoice.toLowerCase() === "scissors" && computerChoice === "rock")) {
-        console.log("the computer wins")
-        computerScore += 1
-    } else {
-        console.log("You win")
-        playerScore += 1
+function getPlayerChoice() {
+    let playerChoice = (prompt("Rock, Paper or Scissors?"));
+        if (playerChoice.toLowerCase() === "rock" || playerChoice.toLowerCase() === "paper" || playerChoice.toLowerCase() === "scissors") {
+            return playerChoice.toLowerCase()
+        }
+}
+function playGame(){
+    function playRound(getPlayerChoice, computerChoice) {
+        console.log(`the computer chose ${computerChoice}`)
+        if (getPlayerChoice === computerChoice) {
+            console.log(`You picked ${getPlayerChoice}`)
+            console.log("It's a tie")
+        } else if ((getPlayerChoice === "rock" && computerChoice === "paper") || (getPlayerChoice=== "paper" && computerChoice === "scissors") || (getPlayerChoice === "scissors" && computerChoice === "rock")) {
+            console.log(`You picked ${getPlayerChoice}`)
+            console.log("the computer wins")
+            computerScore += 1
+        } else if ((getPlayerChoice === "paper" && computerChoice === "rock") || (getPlayerChoice=== "scissors" && computerChoice === "paper") || (getPlayerChoice === "rock" && computerChoice === "scissors")){
+            console.log(`You picked ${getPlayerChoice}`)
+            console.log("You win")
+            playerScore += 1
+        } else {
+            console.error(`You did not make a choice. Please choose rock, paper or scissors`)
+        }
+        console.log(`the score is ${playerScore} - ${computerScore}`)
+    }    
+
+    function finalScore(playerScore, computerScore) {
+        if (playerScore === computerScore) {
+            console.log(`The final score is ${playerScore}  - ${computerScore}. It's a draw!`)
+        } else if (playerScore > computerScore) {
+            console.log(`The final score is ${playerScore}  - ${computerScore}. You win!`)
+        } else if (playerScore < computerScore) {
+            console.log(`The final score is ${playerScore}  - ${computerScore}. Better luck next time..`)
+        }
     }
-    
-    console.log(`the score is ${playerScore} - ${computerScore}`)
+
+    playRound(getPlayerChoice(), computerChoice());
+    setTimeout(() => { playRound(getPlayerChoice(), computerChoice());}, 4000);
+    setTimeout(() => { playRound(getPlayerChoice(), computerChoice());}, 8000);
+    setTimeout(() => { playRound(getPlayerChoice(), computerChoice());}, 12000);
+    setTimeout(() => { playRound(getPlayerChoice(), computerChoice());}, 16000);
+    setTimeout(() => { finalScore(playerScore, computerScore);}, 20000);
 }
 
-playRound(playerChoice, computerChoice());
+playGame();
