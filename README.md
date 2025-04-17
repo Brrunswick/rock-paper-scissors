@@ -1,1 +1,1 @@
-# rock-paper-scissors
+odin project task - rock, paper, scissors 
