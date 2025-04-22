@@ -1,10 +1,16 @@
+//define variables to keep track of player score & computer score
 let playerScore = 0
 let computerScore = 0
 
-function computerChoice() {
-  
+// define "results" so that when we play a round the results div can be updated
+const results = document.querySelector("#results");
+const computerDisplay = document.querySelector("#computerChoice");
+const restart = document.querySelector("#restart");
+
+
+// define a function which will give the output either rock paper or scissors
+function computer() {
     let randNum = Math.floor(Math.random() * 3)
-  
     if (randNum === 0) {
         return "rock"
     } else if (randNum === 1) {
@@ -14,49 +20,49 @@ function computerChoice() {
     }
 }
 
-
-function getPlayerChoice() {
-    let playerChoice = (prompt("Rock, Paper or Scissors?"));
-        if (playerChoice.toLowerCase() === "rock" || playerChoice.toLowerCase() === "paper" || playerChoice.toLowerCase() === "scissors") {
-            return playerChoice.toLowerCase()
-        }
-}
-function playGame(){
-    function playRound(getPlayerChoice, computerChoice) {
-        console.log(`the computer chose ${computerChoice}`)
-        if (getPlayerChoice === computerChoice) {
-            console.log(`You picked ${getPlayerChoice}`)
-            console.log("It's a tie")
-        } else if ((getPlayerChoice === "rock" && computerChoice === "paper") || (getPlayerChoice=== "paper" && computerChoice === "scissors") || (getPlayerChoice === "scissors" && computerChoice === "rock")) {
-            console.log(`You picked ${getPlayerChoice}`)
-            console.log("the computer wins")
-            computerScore += 1
-        } else if ((getPlayerChoice === "paper" && computerChoice === "rock") || (getPlayerChoice=== "scissors" && computerChoice === "paper") || (getPlayerChoice === "rock" && computerChoice === "scissors")){
-            console.log(`You picked ${getPlayerChoice}`)
-            console.log("You win")
-            playerScore += 1
-        } else {
-            console.error(`You did not make a choice. Please choose rock, paper or scissors`)
-        }
-        console.log(`the score is ${playerScore} - ${computerScore}`)
-    }    
-
-    function finalScore(playerScore, computerScore) {
-        if (playerScore === computerScore) {
-            console.log(`The final score is ${playerScore}  - ${computerScore}. It's a draw!`)
-        } else if (playerScore > computerScore) {
-            console.log(`The final score is ${playerScore}  - ${computerScore}. You win!`)
-        } else if (playerScore < computerScore) {
-            console.log(`The final score is ${playerScore}  - ${computerScore}. Better luck next time..`)
-        }
+function playRound(playerChoice) {
+    
+    //create a variable "computer choice" and set it to be the result of calling the previous function
+    let computerChoice = computer(); 
+    
+    //updates the scores
+    if (playerChoice === computerChoice) {
+    } else if ((playerChoice === "rock" && computerChoice === "paper") || (playerChoice=== "paper" && computerChoice === "scissors") || (playerChoice === "scissors" && computerChoice === "rock")) {
+        computerScore += 1
+    } else if ((playerChoice === "paper" && computerChoice === "rock") || (playerChoice=== "scissors" && computerChoice === "paper") || (playerChoice === "rock" && computerChoice === "scissors")){
+        playerScore += 1
     }
 
-    playRound(getPlayerChoice(), computerChoice());
-    setTimeout(() => { playRound(getPlayerChoice(), computerChoice());}, 4000);
-    setTimeout(() => { playRound(getPlayerChoice(), computerChoice());}, 8000);
-    setTimeout(() => { playRound(getPlayerChoice(), computerChoice());}, 12000);
-    setTimeout(() => { playRound(getPlayerChoice(), computerChoice());}, 16000);
-    setTimeout(() => { finalScore(playerScore, computerScore);}, 20000);
+    // edits the text content of the results div to display an up to date game score
+    results.textContent = `The score is ${playerScore} - ${computerScore}`;
+    computerDisplay.textContent = `The computer chose: ${computerChoice}`;
+    finalScore();
 }
 
-playGame();
+//define a function that will determine if someone has won by reaching 5 points, displaying a victory/defeat message and disabling the game buttons
+function finalScore() {
+    if (playerScore === 5 || computerScore === 5) {
+        document.getElementById("rock").disabled = true;
+        document.getElementById("paper").disabled = true;
+        document.getElementById("scissors").disabled = true;
+        restart.setAttribute("style", "display: block")
+        if (computerScore > playerScore) {
+            results.textContent = `The final score is ${playerScore}  - ${computerScore}. Better luck next time..`;
+        } else if (computerScore < playerScore) {
+            results.textContent = `The final score is ${playerScore}  - ${computerScore}. You win!`;
+        }
+    }  
+}
+
+function restartGame() {
+    playerScore = 0
+    computerScore = 0
+    results.textContent = `The score is ${playerScore} - ${computerScore}`;
+    document.getElementById("rock").disabled = false;
+    document.getElementById("paper").disabled = false;
+    document.getElementById("scissors").disabled = false;
+    restart.setAttribute("style", "display: none")
+}
+
+
+
