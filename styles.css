@@ -1,3 +1,52 @@
 #restart {
     display: none;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-size: 28px;
+    margin: 0px;
+}
+
+.buttons button {
+    background-color: white;
+    font-size: 48px;
+    padding: 10px 30px;
+    margin: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    min-width: 250px;
+}
+
+.buttons button:hover {
+    background-color: black;
+    color: white;
+}
+
+.buttons button:disabled {
+    background-color: grey;
+    color: white;
+}
+
+#results {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 48px;
+}
+
+#restart {
+    background-color: white;
+    font-size: 28px;
+    padding: 10px 30px;
+    margin: 20px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#restart:hover {
+    background-color: black;
+    color: white;
+}

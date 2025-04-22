@@ -34,7 +34,7 @@ function playRound(playerChoice) {
     }
 
     // edits the text content of the results div to display an up to date game score
-    results.textContent = `The score is ${playerScore} - ${computerScore}`;
+    results.textContent = `${playerScore} - ${computerScore}`;
     computerDisplay.textContent = `The computer chose: ${computerChoice}`;
     finalScore();
 }
@@ -47,9 +47,9 @@ function finalScore() {
         document.getElementById("scissors").disabled = true;
         restart.setAttribute("style", "display: block")
         if (computerScore > playerScore) {
-            results.textContent = `The final score is ${playerScore}  - ${computerScore}. Better luck next time..`;
+            results.textContent = `${playerScore} - ${computerScore}`;
         } else if (computerScore < playerScore) {
-            results.textContent = `The final score is ${playerScore}  - ${computerScore}. You win!`;
+            results.textContent = `${playerScore} - ${computerScore}`;
         }
     }  
 }
@@ -57,7 +57,7 @@ function finalScore() {
 function restartGame() {
     playerScore = 0
     computerScore = 0
-    results.textContent = `The score is ${playerScore} - ${computerScore}`;
+    results.textContent = `${playerScore} - ${computerScore}`;
     document.getElementById("rock").disabled = false;
     document.getElementById("paper").disabled = false;
     document.getElementById("scissors").disabled = false;

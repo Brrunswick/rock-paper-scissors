@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>ROCK PAPER SCISSORS</h1>
+    <div id="computerChoice"></div>
 
-    <button id="rock" onclick="playRound(`rock`)">Rock</button>
-    <button id="paper" onclick="playRound(`paper`)">Paper</button>
-    <button id="scissors" onclick="playRound(`scissors`)">Scissors</button>
+    <div class="buttons">
+        <button id="rock" onclick="playRound(`rock`)">Rock</button>
+        <button id="paper" onclick="playRound(`paper`)">Paper</button>
+        <button id="scissors" onclick="playRound(`scissors`)">Scissors</button>
+    </div>
 
-    <div id="computerChoice">The computer chose: </div>
-
-    <div id="results">The score is 0 - 0 </div>
-
-    <button id="restart" onclick="restartGame()">Restart</button>
+    <div class="scores">
+        <div id="score">The score is</div>
+        <div id="results">0 - 0</div>
+    </div>
+    <button id="restart" onclick="restartGame()">Play again</button>
 
     <script src="javascript.js"></script>
 </body>
